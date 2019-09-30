@@ -1,6 +1,11 @@
 public class WeatherProvider {
 	private static WeatherProvider weatherProvider;
-	private static String[] weather = {"Lol"};
+	private static String[] weather = {
+			"RAIN",
+			"FOG",
+			"SUN",
+			"SNOW"
+	};
 
 	private WeatherProvider(){}
 
@@ -11,6 +16,9 @@ public class WeatherProvider {
 	}
 
 	public String getCurrentWeather(Coordinates coordinates){
-		return null; //TODO getCurrentWeather
+		int	seed;
+
+		seed = coordinates.getHeight() + coordinates.getLatitude() + coordinates.getLongitude();
+		return (weather[seed % weather.length]);
 	}
 }
