@@ -1,3 +1,6 @@
+import java.util.Random;
+import java.util.Timer;
+
 public class WeatherProvider {
 	private static WeatherProvider weatherProvider;
 	private static String[] weather = {
@@ -10,15 +13,22 @@ public class WeatherProvider {
 	private WeatherProvider(){}
 
 	public static WeatherProvider getProvider(){
-		if (weatherProvider != null)
+		if (weatherProvider == null)
 			weatherProvider = new WeatherProvider();
 		return weatherProvider;
 	}
 
 	public String getCurrentWeather(Coordinates coordinates){
-		int	seed;
+//		int	seed;
+		Random	random = new Random();
 
-		seed = coordinates.getHeight() + coordinates.getLatitude() + coordinates.getLongitude();
-		return (weather[seed % weather.length]);
+//		seed = coordinates.getHeight() + coordinates.getLatitude() + coordinates.getLongitude();
+//		random.setSeed(seed);
+//
+//		seed = random.nextInt(4);
+//
+//		seed = seed < 0 ? seed * -1 : seed;
+
+		return (weather[random.nextInt(4)]);
 	}
 }

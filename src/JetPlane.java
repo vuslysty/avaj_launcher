@@ -27,14 +27,14 @@ public class JetPlane extends Aircraft implements Flyable {
 		Simulator.writer.print(getFormattingName() + ": ");
 		Simulator.writer.println(phrases.get(weather) + ".");
 
-		if (weather == "RAIN")
+		if (weather.equals("RAIN"))
 			changeCoordinates(0, 10, 2);
-		else if (weather == "FOG")
+		else if (weather.equals("FOG"))
 			changeCoordinates(0, 5, 0);
-		else if (weather == "SUN")
+		else if (weather.equals("SUN"))
 			changeCoordinates(0, 1, 0);
-		else if (weather == "SNOW")
-			changeCoordinates(0, 0, 7);
+		else if (weather.equals("SNOW"))
+			changeCoordinates(0, 0, -7);
 
 		if (coordinates.getHeight() == 0)
 		{

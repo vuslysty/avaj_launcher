@@ -4,6 +4,6 @@ public class WeatherTower extends Tower {
 	}
 
 	void changeWeather(){
-		 conditionsChanged();
+		 this.conditionsChanged();
 	}
 }

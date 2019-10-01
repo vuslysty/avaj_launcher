@@ -1,7 +1,7 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public abstract class Tower {
-	private LinkedList<Flyable> observers;
+	private ArrayList<Flyable> observers = new ArrayList<>();
 
 	public void register(Flyable flyable) {
 		if (!observers.contains(flyable))
@@ -13,8 +13,8 @@ public abstract class Tower {
 	}
 
 	protected void conditionsChanged(){
-		for (Flyable item : observers) {
-			item.updateConditions();
+		for (int i = 0; i < observers.size(); i++) {
+			observers.get(i).updateConditions();
 		}
 	}
 }

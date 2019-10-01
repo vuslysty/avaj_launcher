@@ -27,13 +27,13 @@ public class Baloon extends Aircraft implements Flyable {
 		Simulator.writer.print(getFormattingName() + ": ");
 		Simulator.writer.println(phrases.get(weather) + ".");
 
-		if (weather == "RAIN")
+		if (weather.equals("RAIN"))
 			changeCoordinates(2, 0, 4);
-		else if (weather == "FOG")
+		else if (weather.equals("FOG"))
 			changeCoordinates(0, 0, -5);
-		else if (weather == "SUN")
+		else if (weather.equals("SUN"))
 			changeCoordinates(0, 0, -3);
-		else if (weather == "SNOW")
+		else if (weather.equals("SNOW"))
 			changeCoordinates(0, 0, -15);
 
 		if (coordinates.getHeight() == 0)
