@@ -2,8 +2,8 @@ package Exceptions;
 
 public class CiclesException extends AvajException {
 
-	public CiclesException(int lineNum) {
+	public CiclesException(int lineNum, String mess) {
 		super(lineNum);
-		message += "Bad cicles number";
+		message += "Cicles number exception (" + mess + ")";
 	}
 }

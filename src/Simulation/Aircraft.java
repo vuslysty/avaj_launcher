@@ -1,3 +1,5 @@
+package Simulation;
+
 public abstract class Aircraft {
 	protected long 			id;
 	protected String		name;
@@ -20,7 +22,7 @@ public abstract class Aircraft {
 
 	protected void getRegisteredMessage()
 	{
-		Simulator.writer.println("Tower says: " + getFormattingName() +
+		Simulator.writer.println("Simulation.Tower says: " + getFormattingName() +
 				" registered to weather tower.");
 	}
 
@@ -29,7 +31,7 @@ public abstract class Aircraft {
 		Simulator.writer.println(getFormattingName() + " landing at " +
 				"longitude: " + coordinates.getLongitude() + " " +
 				"latitude: " + coordinates.getLatitude() + ".");
-		Simulator.writer.println("Tower says: " + getFormattingName() +
+		Simulator.writer.println("Simulation.Tower says: " + getFormattingName() +
 				" unregistered from weather tower.");
 	}
 

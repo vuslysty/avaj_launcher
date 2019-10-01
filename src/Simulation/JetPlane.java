@@ -1,3 +1,5 @@
+package Simulation;
+
 import java.util.HashMap;
 
 public class JetPlane extends Aircraft implements Flyable {
@@ -17,7 +19,7 @@ public class JetPlane extends Aircraft implements Flyable {
 	JetPlane(String name, Coordinates coordinates)
 	{
 		super(name, coordinates);
-		this.aircraftType = "JetPlane";
+		this.aircraftType = "Simulation.JetPlane";
 	}
 
 	@Override

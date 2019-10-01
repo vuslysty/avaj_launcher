@@ -1,8 +1,10 @@
+package Simulation;
+
 import java.util.HashMap;
 
-public class Helicopter extends Aircraft implements Flyable {
+public class Baloon extends Aircraft implements Flyable {
 
-	private WeatherTower	weatherTower;
+	private WeatherTower						weatherTower;
 	private static HashMap<String, String> phrases = createHashMap();
 
 	private static HashMap<String, String> createHashMap() {
@@ -14,10 +16,10 @@ public class Helicopter extends Aircraft implements Flyable {
 		return result;
 	}
 
-	Helicopter(String name, Coordinates coordinates)
+	Baloon(String name, Coordinates coordinates)
 	{
 		super(name, coordinates);
-		this.aircraftType = "Helicopter";
+		this.aircraftType = "Simulation.Baloon";
 	}
 
 	@Override
@@ -28,13 +30,13 @@ public class Helicopter extends Aircraft implements Flyable {
 		Simulator.writer.println(phrases.get(weather) + ".");
 
 		if (weather.equals("RAIN"))
-			changeCoordinates(10, 0, 2);
+			changeCoordinates(2, 0, 4);
 		else if (weather.equals("FOG"))
-			changeCoordinates(5, 0, 0);
+			changeCoordinates(0, 0, -5);
 		else if (weather.equals("SUN"))
-			changeCoordinates(1, 0, 0);
+			changeCoordinates(0, 0, -3);
 		else if (weather.equals("SNOW"))
-			changeCoordinates(0, 0, -12);
+			changeCoordinates(0, 0, -15);
 
 		if (coordinates.getHeight() == 0)
 		{

@@ -1,3 +1,5 @@
+package Simulation;
+
 public class Coordinates {
 
 	private int	longitude;
