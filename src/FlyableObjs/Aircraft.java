@@ -1,9 +1,12 @@
-package Simulation;
+package FlyableObjs;
+
+import Simulation.Coordinates;
+import Simulation.Simulator;
 
 public abstract class Aircraft {
 	protected long 			id;
 	protected String		name;
-	protected Coordinates	coordinates;
+	protected Coordinates 	coordinates;
 	protected String		aircraftType;
 
 	private static long			idCounter = 0;
@@ -22,7 +25,7 @@ public abstract class Aircraft {
 
 	protected void getRegisteredMessage()
 	{
-		Simulator.writer.println("Simulation.Tower says: " + getFormattingName() +
+		Simulator.writer.println("Tower says: " + getFormattingName() +
 				" registered to weather tower.");
 	}
 
@@ -31,7 +34,7 @@ public abstract class Aircraft {
 		Simulator.writer.println(getFormattingName() + " landing at " +
 				"longitude: " + coordinates.getLongitude() + " " +
 				"latitude: " + coordinates.getLatitude() + ".");
-		Simulator.writer.println("Simulation.Tower says: " + getFormattingName() +
+		Simulator.writer.println("Tower says: " + getFormattingName() +
 				" unregistered from weather tower.");
 	}
 

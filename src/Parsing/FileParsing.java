@@ -1,11 +1,11 @@
 package Parsing;
 
-import Exceptions.CiclesException;
+import Exceptions.CyclesException;
 import Exceptions.NoFileException;
 import Exceptions.NumberException;
 import Exceptions.ScenarioException;
-import Simulation.AircraftFactory;
-import Simulation.Flyable;
+import FlyableObjs.AircraftFactory;
+import FlyableObjs.Flyable;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,7 +17,7 @@ public class FileParsing {
 
 	private int							lineNum;
 	private String[]					split;
-	private int							cicles;
+	private int 						cycles;
 	private LinkedList<Flyable> 		flyables;
 	private BufferedReader 				reader;
 
@@ -26,12 +26,12 @@ public class FileParsing {
 		return flyables;
 	}
 
-	public int							getCicles()
+	public int getCycles()
 	{
-		return cicles;
+		return cycles;
 	}
 
-	public FileParsing(String fileName) throws NoFileException, IOException, CiclesException, ScenarioException, NumberException {
+	public FileParsing(String fileName) throws NoFileException, IOException, CyclesException, ScenarioException, NumberException {
 		String	line;
 		this.flyables = new LinkedList<>();
 
@@ -43,9 +43,12 @@ public class FileParsing {
 
 		readCicles();
 
-		while ( (line = reader.readLine()) != null )
+		while ( (line = reader.readLine()) != null)
 		{
 			lineNum++;
+
+			if (line.isEmpty())
+				throw new ScenarioException(lineNum, "Empty line instead of scenario");
 
 			split = line.split(" ");
 			if (split.length != 5)
@@ -56,10 +59,16 @@ public class FileParsing {
 				checkCoordinates(split[3], "Latitude");
 				checkHeight(split[4]);
 
-				flyables.add(AircraftFactory.newAircraft(split[0], split[1],
+				Flyable	flyable = AircraftFactory.newAircraft(split[0], split[1],
 						Integer.parseInt(split[2]),
 						Integer.parseInt(split[3]),
-						Integer.parseInt(split[4])));
+						Integer.parseInt(split[4]));
+
+				if (flyable != null)
+					flyables.add(flyable);
+				else
+					throw new ScenarioException(lineNum, "Undeclared type of flyable object");
+
 			} catch (NumberFormatException e)  {
 				throw new NumberException(lineNum);
 			}
@@ -70,27 +79,27 @@ public class FileParsing {
 		return str.matches("[-+]?\\d+");
 	}
 
-	void 	readCicles() throws IOException, CiclesException, NumberException {
+	void 	readCicles() throws IOException, CyclesException, NumberException {
 		String	line;
 
 		lineNum++;
 
-		if ((line = reader.readLine()) != null)
+		if ((line = reader.readLine()) != null && !line.isEmpty())
 		{
 			split = line.split(" ");
 			if (split.length != 1)
-				throw new CiclesException(lineNum, "Wrong arguments number");
+				throw new CyclesException(lineNum, "Wrong arguments number");
 			if (!isNumber(split[0]))
-				throw new CiclesException(lineNum, "Argument is not a number");
+				throw new CyclesException(lineNum, "Argument is not a number");
 			try {
-				if ((cicles = Integer.parseInt(split[0])) < 0)
-					throw new CiclesException(lineNum, "Argument must be a positive number");
+				if ((cycles = Integer.parseInt(split[0])) < 0)
+					throw new CyclesException(lineNum, "Argument must be a positive number");
 			} catch (NumberFormatException e) {
 				throw new NumberException(lineNum);
 			}
 		}
 		else
-			throw new CiclesException(lineNum, "Empty Line");
+			throw new CyclesException(lineNum, "Empty Line");
 	}
 
 	void	checkCoordinates(String coord, String type) throws ScenarioException {

@@ -1,9 +1,10 @@
 package Simulation;
 
 import Exceptions.AvajException;
-import Exceptions.CiclesException;
+import Exceptions.CyclesException;
 import Exceptions.NoFileException;
 import Exceptions.ScenarioException;
+import FlyableObjs.Flyable;
 import Parsing.FileParsing;
 
 import java.io.*;
@@ -15,7 +16,13 @@ public class Simulator {
 	private static int					cicles;
 	private static LinkedList<Flyable>	flyables;
 
-	public static void main(String[] args) throws IOException, ScenarioException, CiclesException, NoFileException {
+	public static void main(String[] args) throws IOException, ScenarioException, CyclesException, NoFileException {
+
+		if (args.length != 1) {
+			System.out.println("usage: ./simulator [scenarioFile]");
+			return ;
+		}
+
 
 		File simulationFile = new File("simulation.txt");
 		WeatherTower	weatherTower = new WeatherTower();
@@ -25,7 +32,7 @@ public class Simulator {
 			writer = new PrintWriter(simulationFile);
 			fileParsing = new FileParsing(args[0]);
 
-			cicles = fileParsing.getCicles();
+			cicles = fileParsing.getCycles();
 			flyables = fileParsing.getFlyables();
 
 
@@ -43,33 +50,4 @@ public class Simulator {
 
 		writer.close();
 	}
-
-//	private static void parseFile(String fileName) throws IOException
-//	{
-//		BufferedReader	reader = new BufferedReader(new FileReader(fileName));
-//		String			line;
-//		String[]		splitted;
-//
-//		line = reader.readLine();
-//		cicles = Integer.parseInt(line);
-//
-//		while ((line = reader.readLine()) != null)
-//		{
-//			splitted = line.split(" ");
-//			flyables.add(AircraftFactory.newAircraft(splitted[0], splitted[1],
-//					Integer.parseInt(splitted[2]),
-//					Integer.parseInt(splitted[3]),
-//					Integer.parseInt(splitted[4])));
-//		}
-//
-////		if ((line = reader.readLine()) != null)
-////		{
-////			lineNum++;
-////			splitted = line.split(" ");
-////			if (splitted.length != 1)
-////				throw new CiclesException(lineNum);
-////		}
-//	}
-
-
 }

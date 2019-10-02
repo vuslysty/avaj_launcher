@@ -1,4 +1,6 @@
-package Simulation;
+package FlyableObjs;
+
+import Simulation.Coordinates;
 
 public class AircraftFactory {
 
@@ -15,6 +17,12 @@ public class AircraftFactory {
 				break;
 			case "Helicopter":
 				aircraft = new Helicopter(name, new Coordinates(longitude, latitude, height));
+				break;
+			case "StarShip":
+				aircraft = new StarShip(name, new Coordinates(longitude, latitude, height));
+				break;
+			case "UFO":
+				aircraft = new UFO(name, new Coordinates(longitude, latitude, height));
 				break;
 		}
 		return aircraft;

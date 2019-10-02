@@ -1,4 +1,4 @@
-2000000
+22
 Baloon B1 2 3 20
 Baloon B2 1 8 66
 JetPlane J1 23 44 32
@@ -8,3 +8,5 @@ Helicopter H3 98 68 99
 Baloon B3 102 22 34
 JetPlane J2 11 99 768
 Helicopter H4 223 23 5
+UFO U1 23 53 23
+StarShip S1 23 23 52

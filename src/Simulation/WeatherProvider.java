@@ -8,7 +8,10 @@ public class WeatherProvider {
 			"RAIN",
 			"FOG",
 			"SUN",
-			"SNOW"
+			"SNOW",
+			"TORNADO",
+			"THUNDERSTORM",
+			"DUSTSTORM"
 	};
 
 	private WeatherProvider(){}
@@ -20,16 +23,8 @@ public class WeatherProvider {
 	}
 
 	public String getCurrentWeather(Coordinates coordinates){
-//		int	seed;
 		Random	random = new Random();
 
-//		seed = coordinates.getHeight() + coordinates.getLatitude() + coordinates.getLongitude();
-//		random.setSeed(seed);
-//
-//		seed = random.nextInt(4);
-//
-//		seed = seed < 0 ? seed * -1 : seed;
-
-		return (weather[random.nextInt(4)]);
+		return (weather[random.nextInt(weather.length)]);
 	}
 }
